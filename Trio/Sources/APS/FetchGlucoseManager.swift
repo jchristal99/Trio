@@ -288,7 +288,7 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
         if backfillGlucose.isNotEmpty {
             debug(.deviceManager, "Backfilling glucose...")
             do {
-                try await glucoseStorage.storeGlucose(backfillGlucose)
+                try await glucoseStorage.backfillGlucose(backfillGlucose)
             } catch {
                 debug(.deviceManager, "Unable to backfill glucose: \(error)")
             }
