@@ -36,6 +36,9 @@ extension PumpConfig {
                                 } label: {
                                     HStack {
                                         Image(uiImage: pumpState.image ?? UIImage())
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(maxWidth: 100)
                                         Text(pumpState.name)
                                     }
                                     .frame(maxWidth: .infinity, minHeight: 50, alignment: .center)
@@ -115,9 +118,11 @@ extension PumpConfig {
                                 )
                                 VStack(alignment: .leading) {
                                     Text("• Medtronic")
+                                    Text("• All Omnipod Types")
                                     Text("• Omnipod Eros")
                                     Text("• Omnipod DASH")
                                     Text("• Dana (RS/-i)")
+                                    Text("• Medtrum Nano (200u/300u)")
                                     Text("• Pump Simulator")
                                 }
                                 Text(
@@ -130,9 +135,9 @@ extension PumpConfig {
                 }
                 .confirmationDialog("Pump Model", isPresented: $showPumpSelection) {
                     Button("Medtronic") { state.addPump(.minimed) }
-                    Button("Omnipod Eros") { state.addPump(.omnipod) }
-                    Button("Omnipod DASH") { state.addPump(.omnipodBLE) }
+                    Button("All Omnipod Types") { state.addPump(.omni) }
                     Button("Dana(RS/-i)") { state.addPump(.dana) }
+                    Button("Medtrum Nano") { state.addPump(.medtrum) }
                     Button("Pump Simulator") { state.addPump(.simulator) }
                 } message: { Text("Select Pump Model") }
             }
